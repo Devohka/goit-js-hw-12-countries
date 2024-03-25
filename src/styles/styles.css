@@ -10,6 +10,11 @@ ul {
   height: 20px;
   border-radius: 7px;
   border-width: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  border: 2px solid gray;
 }
 
 .button__list {

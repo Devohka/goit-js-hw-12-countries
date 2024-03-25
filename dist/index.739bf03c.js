@@ -587,69 +587,70 @@ function hmrAccept(bundle /*: ParcelRequire */ , id /*: string */ ) {
 var _core = require("@pnotify/core");
 var _mobile = require("@pnotify/mobile");
 (0, _core.defaultModules).set(_mobile, {});
-const countryInputRef = document.querySelector(".country__input");
-const countryTitleRef = document.querySelector(".country__title");
-const countryCapitalRef = document.querySelector(".country-capital");
-const countryPopulationRef = document.querySelector(".country-population");
-const countryLanguagesList = document.querySelector(".languages__list");
-const countryImgRef = document.querySelector(".country__img");
-const buttonsListRef = document.querySelector(".buttons__list");
+const countryInputEl = document.querySelector(".country__input");
+const countryTitleEl = document.querySelector(".country__title");
+const countryCapitalEl = document.querySelector(".country-capital");
+const countryPopulationEl = document.querySelector(".country-population");
+const countryLanguagesListEl = document.querySelector(".languages__list");
+const countryImgEl = document.querySelector(".country__img");
+const buttonsListEl = document.querySelector(".buttons__list");
 const fetchCountries = _.debounce((searchQuery)=>{
     fetch(`https://restcountries.com/v3.1/name/${searchQuery}`).then((res)=>{
-        if (!res.ok) console.log("!res.ok");
+        if (res !== true) console.log("res !== true");
         return res.json();
     }).then((data)=>{
+        const dataLang = data[0].languages;
         if (data.length > 10) (0, _core.error)({
             text: "Too many matches found. Please enter a more specific query!"
         });
-        buttonsListRef.innerHTML = ``;
+        buttonsListEl.innerHTML = ``;
         if (data.length >= 2 && data.length <= 10) {
-            buttonsListRef.style.display = "block";
+            buttonsListEl.style.display = "block";
             data.forEach((country)=>{
-                buttonsListRef.insertAdjacentHTML("beforeend", `<li><button class=country__button>${country.name.common}</button></li>`);
+                buttonsListEl.insertAdjacentHTML("beforeend", `<li><button class=country__button>${country.name.common}</button></li>`);
             });
-            buttonsListRef.addEventListener("click", (e)=>{
+            buttonsListEl.addEventListener("click", (e)=>{
                 if (e.target.nodeName === "LI" || e.target.nodeName === "UL") return;
-                buttonsListRef.style.display = "none";
-                const findIdx = data.findIndex((country)=>country.name.common === e.target.textContent);
-                countryTitleRef.textContent = data[findIdx].name.common;
-                countryCapitalRef.textContent = data[findIdx].capital;
-                countryPopulationRef.textContent = data[findIdx].population;
-                countryImgRef.innerHTML = `<img src=${data[findIdx].flags.png} alt=${data[findIdx].alt}/>`;
-                countryLanguagesList.innerHTML = ``;
-                if (Object.keys(data[0].languages).length > 1) {
+                buttonsListEl.style.display = "none";
+                const index = data.findIndex((country)=>country.name.common === e.target.textContent);
+                countryTitleEl.textContent = data[index].name.common;
+                countryCapitalEl.textContent = data[index].capital;
+                countryPopulationEl.textContent = data[index].population;
+                countryImgEl.innerHTML = `<img src=${data[index].flags.png} alt=${data[index].alt}/>`;
+                countryLanguagesListEl.innerHTML = ``;
+                if (Object.keys(dataLang).length > 1) {
                     let languagesContent = ``;
-                    Object.values(data[0].languages).forEach((language)=>{
+                    Object.values(dataLang).forEach((language)=>{
                         languagesContent += `<li class=languages__item>${language}</li>`;
                     });
-                    countryLanguagesList.innerHTML = ``;
-                    return countryLanguagesList.innerHTML = languagesContent;
+                    countryLanguagesListEl.innerHTML = ``;
+                    return countryLanguagesListEl.innerHTML = languagesContent;
                 }
-                countryLanguagesList.insertAdjacentHTML("beforeend", `<li class=languages__item>${Object.values(data[0].languages)}</li>`);
+                countryLanguagesListEl.insertAdjacentHTML("beforeend", `<li class=languages__item>${Object.values(dataLang)}</li>`);
             });
         }
         if (data.length === 1) {
-            countryTitleRef.textContent = data[0].name.common;
-            countryCapitalRef.textContent = data[0].capital;
-            countryPopulationRef.textContent = data[0].population;
-            countryImgRef.innerHTML = `<img src=${data[0].flags.png} alt=${data[0].alt}/>`;
-            countryLanguagesList.innerHTML = ``;
+            countryTitleEl.textContent = data[0].name.common;
+            countryCapitalEl.textContent = data[0].capital;
+            countryPopulationEl.textContent = data[0].population;
+            countryImgEl.innerHTML = `<img src=${data[0].flags.png} alt=${data[0].alt}/>`;
+            countryLanguagesListEl.innerHTML = ``;
             if (Object.keys(data[0].languages).length > 1) {
                 let languagesContent = ``;
                 Object.values(data[0].languages).forEach((language)=>{
                     languagesContent += `<li class=languages__item>${language}</li>`;
                 });
-                countryLanguagesList.innerHTML = ``;
-                return countryLanguagesList.innerHTML = languagesContent;
+                countryLanguagesListEl.innerHTML = ``;
+                return countryLanguagesListEl.innerHTML = languagesContent;
             }
-            countryLanguagesList.insertAdjacentHTML("beforeend", `<li class=languages__item>${Object.values(data[0].languages)}</li>`);
+            countryLanguagesListEl.insertAdjacentHTML("beforeend", `<li class=languages__item>${Object.values(data[0].languages)}</li>`);
         }
     }).catch((err)=>{
         console.log(err);
     });
-}, 500);
-countryInputRef.addEventListener("input", (evt)=>{
-    fetchCountries(evt.target.value);
+}, 1000);
+countryInputEl.addEventListener("input", (element)=>{
+    fetchCountries(element.target.value);
 });
 
 },{"@pnotify/core":"9RSjy","@pnotify/mobile":"a8oTw"}],"9RSjy":[function(require,module,exports) {

@@ -5,10 +5,11 @@ ul {
 }
 
 .country__input {
-  border-width: 2px;
+  border: 2px solid gray;
   border-radius: 7px;
   width: 150px;
   height: 20px;
+  padding: 5px 10px;
   position: relative;
 }
 
