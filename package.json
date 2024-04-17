@@ -1,8 +1,8 @@
 {
   "name": "goit-js-hw-12-countries",
   "version": "1.0.0",
-  "description": "> 0.5%, last 2 versions, not dead",
-  "homepage": "https://0qsenxx.github.io/goit-js-hw-12-countries/",
+  "description": "",
+  "homepage": "https://github.com/Devohka/goit-js-hw-12-countries",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/*.html",
@@ -12,13 +12,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/0qsenxx/goit-js-hw-12-countries.git"
+    "url": "git+https://github.com/Devohka/goit-js-hw-12-countries"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/0qsenxx/goit-js-hw-12-countries/issues"
+    "url": "https://github.com/Devohka/goit-js-hw-12-countries/issues"
   },
   "dependencies": {
     "gh-pages": "^6.1.1",
