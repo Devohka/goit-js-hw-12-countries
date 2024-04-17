@@ -2,7 +2,7 @@
   "name": "goit-js-hw-12-countries",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/Devohka/goit-js-hw-12-countries",
+  "homepage": "https://Devohka.github.io/goit-js-hw-12-countries",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/*.html",
